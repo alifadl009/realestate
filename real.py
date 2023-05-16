@@ -4,11 +4,14 @@ import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
 from apify_client import ApifyClient
+import os
+from dotenv import load_dotenv
 
 # Function to fetch data
 def fetch_data(url):
 # Initialize the ApifyClient with your API token
-    client = ApifyClient("apify_api_WumdvyLSNxeUxGoK7wjX5UKEngQW1R1tdkAU")
+    APIFY_TOKEN = os.getenv('APIFY_TOKEN')
+    client = ApifyClient(APIFY_TOKEN)
 
     # Prepare the actor input
     run_input = {
@@ -49,6 +52,8 @@ def main():
     The application also provides visualizations of the data, including distributions of prices, number of bedrooms, 
     number of bathrooms, and geographical locations of properties. These visualizations can help users better understand 
     the data and identify trends or patterns.
+    
+    The source code for this application is available on [GitHub](https://github.com/alifadl009/realestate).
     """)    
     st.sidebar.header('Input URL')
     url = st.sidebar.text_input('Enter the URL: ')
@@ -62,6 +67,8 @@ def main():
         
         st.header('Property Data')
         st.write(df)
+        st.subheader('Shape of the Data')
+        st.write(f'The dataset contains {df.shape[0]} rows and {df.shape[1]} columns.')
 
         # KPIs
         st.header('Key Performance Indicators')
