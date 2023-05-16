@@ -7,12 +7,14 @@ from apify_client import ApifyClient
 import os
 from dotenv import load_dotenv
 
+# Initialize the ApifyClient with your API token
+load_dotenv()
+APIFY_TOKEN = os.getenv('APIFY_TOKEN')
+client = ApifyClient(APIFY_TOKEN)
+
 # Function to fetch data
 def fetch_data(url):
-# Initialize the ApifyClient with your API token
-    APIFY_TOKEN = os.getenv('APIFY_TOKEN')
-    client = ApifyClient(APIFY_TOKEN)
-
+    
     # Prepare the actor input
     run_input = {
         "listUrls": [{ "url": url }],
