@@ -4,17 +4,11 @@ import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
 from apify_client import ApifyClient
-import os
-from dotenv import load_dotenv
-
-# Initialize the ApifyClient with your API token
-load_dotenv()
-APIFY_TOKEN = os.getenv('APIFY_TOKEN')
-client = ApifyClient(APIFY_TOKEN)
 
 # Function to fetch data
 def fetch_data(url):
-    
+    # Initialize the ApifyClient with your API token
+    client = ApifyClient("apify_api_WumdvyLSNxeUxGoK7wjX5UKEngQW1R1tdkAU")
     # Prepare the actor input
     run_input = {
         "listUrls": [{ "url": url }],
